@@ -1,0 +1,141 @@
+/******* CONFIG *******/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    color: #ccc;
+    font-size: 16px;
+}
+
+body {
+    background: linear-gradient(to bottom right, #150A23, #1E112E);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 50px 0;
+}
+
+
+/******* ADD *******/
+.container .main-title {
+    margin-top: 20px;
+    font-size: 22px;
+}
+.container .add {
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.container .add input {
+    flex: 1 1 auto;
+    outline: none;
+    padding: 10px 20px;
+    background: transparent;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0) 0px 8px 24px;
+    margin-right: 20px;
+}
+
+.container .add button {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0) 0px 8px 24px;  
+    transition: background .3s linear;
+}
+
+.container .add button:hover {
+    cursor: pointer;
+    background: rgba(0, 255, 0, 0.3);
+}
+
+/******* TODOS *******/
+.container .todos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container .todos h1 {
+    margin-bottom: 10px;
+}
+
+.container .todos .todo {
+    padding: 20px 20px 40px;
+    border-radius: 10px;
+    margin: 10px 0;
+    box-shadow: rgb(0, 0, 0) 0px 8px 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container .todos.todos-done .todo {
+    background-color: rgb(0, 255, 0, .2);
+}
+
+.container .todos .todo .time {
+    width: auto;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    color: rgba(204, 204, 204, .4);
+    font-size: 14px;
+}
+
+.container .todos .todo .text {
+    flex: 1 1 auto;
+    word-wrap: anywhere;
+}
+
+.container .todos .todo i {
+    width: 25px;
+    height: 25px;
+    border: 1px solid;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    transition: background 0.3s linear;
+    box-shadow: rgb(0, 0, 0) 0px 8px 24px;
+}
+
+.container .todos .todo .fa-close.disable {
+    color: #000;
+    &:hover {
+        cursor: default;
+        background: transparent;
+    }
+}
+
+.container .todos .todo .fa-check:hover {
+    cursor: pointer;
+    background: rgba(0, 255, 0, 0.3);
+}
+
+.container .todos .todo .fa-close:hover {
+    cursor: pointer;
+    background: rgba(255, 0, 0, 0.3);
+}
