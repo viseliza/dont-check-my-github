@@ -1,15 +1,12 @@
 class Todos {
     constructor() {
-        this.todosArray = [];
+        this.todosArray = JSON.parse(localStorage.getItem("todos")) ?? [];
         this.length = localStorage.getItem("lenght") ?? 0;
         
-        Object.keys(localStorage).forEach((key) => {
-            if (key == "lenght") return;
-            const todo = JSON.parse(localStorage.getItem(key));
-            this.todosArray = [...this.todosArray, todo];
+        this.todosArray.forEach((todo) => {
             HTMLHelper.drawTask(todo, true);
-            this.length++;
         });
+
         HTMLHelper.updateTitle();
     }
 
@@ -30,7 +27,7 @@ class Todos {
         HTMLHelper.drawTask(todo);
 
         this.todosArray = [...this.todosArray, todo];
-        localStorage.setItem(todo.id, JSON.stringify(todo));
+        localStorage.setItem("todos", JSON.stringify(this.todosArray));
         
         HTMLHelper.updateTitle();
         localStorage.setItem("lenght", this.length);
@@ -43,14 +40,14 @@ class Todos {
      * @param {number} id Номер заметки 
      */
     remove(id) {
-        const todoById = this.todosArray.filter(todo => todo.id = id);
-        
-        if (todoById.status == "done") return;
+        let todoById = this.todosArray.filter(todo => todo.id == id)[0];
 
+        if (todoById.status == "done") return;
+        
         const todos =  document.getElementsByClassName("todos")[0];
         todos.removeChild(todos.getElementsByClassName(`todo todo-${id}`)[0]);
         this.todosArray = this.todosArray.filter(todo => todo.id != id);
-        localStorage.removeItem(id);
+        localStorage.setItem("todos", JSON.stringify(this.todosArray));
         HTMLHelper.updateTitle();
     }
 
@@ -63,18 +60,18 @@ class Todos {
         let todoById = this.todosArray.filter(todo => todo.id == id)[0];
 
         if (todoById.status == "done") return;
-
+        
         const todos =  document.getElementsByClassName("todos")[0];
         const todo = todos.getElementsByClassName(`todo todo-${id}`)[0];
         todo.getElementsByClassName("text")[0].style.textDecoration = "line-through";
-        todo.getElementsByClassName("fa fa-close")[0].className = "fa fa-close disable";
+        todo.getElementsByClassName("fa fa-trash")[0].className = "fa fa-trash disable";
         this.todosArray = this.todosArray.map(todo => {
             if (todo.id == id)
                 todo.status = "done"
             return todo;
         });
         todoById = this.todosArray.filter(todo => todo.id == id)[0];
-        localStorage.setItem(id, JSON.stringify(todoById));
+        localStorage.setItem("todos", JSON.stringify(this.todosArray));
 
         HTMLHelper.updateTitle();
         HTMLHelper.drawTask(todoById);

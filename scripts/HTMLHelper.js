@@ -9,7 +9,6 @@ class HTMLHelper {
         document.getElementById("h1-done-todos").textContent = doneTodos.length ?`Выполненные заметки: ${doneTodos.length}` : "";
     }
 
-
     /**
      * @param {number} id Номер заметки
      * @param {string} text Текст заметки
@@ -24,9 +23,9 @@ class HTMLHelper {
         if (fullRender && status == "done") {
             document.getElementsByClassName("todos")[0].innerHTML += `
                 <section class="todo todo-${id} todo-not-done">
-                    <span style="text-decoration: line-through;" class="text">${text}</span>
+                    <span class="text">${text}</span>
                     <i onclick="done(${id})" class="fa fa-check"></i>
-                    <i onclick="remove(${id})" class="fa fa-close disable"></i>
+                    <i onclick="remove(${id})" class="fa fa-trash disable"></i>
                     <span class="time">${dateStart.toLocaleDateString()} ${dateStart.toLocaleTimeString()}</span>
                 <section/>
             `;
@@ -41,7 +40,7 @@ class HTMLHelper {
                 <section class="todo todo-${id} todo-not-done">
                     <span class="text">${text}</span>
                     <i onclick="done(${id})" class="fa fa-check"></i>
-                    <i onclick="remove(${id})" class="fa fa-close"></i>
+                    <i onclick="remove(${id})" class="fa fa-trash"></i>
                     <span class="time">${dateStart.toLocaleDateString()} ${dateStart.toLocaleTimeString()}</span>
                 <section/>
             `;
