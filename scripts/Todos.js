@@ -30,8 +30,8 @@ class Todos {
         localStorage.setItem("todos", JSON.stringify(this.todosArray));
         
         HTMLHelper.updateTitle();
-        localStorage.setItem("lenght", this.length);
         this.length++;
+        localStorage.setItem("lenght", this.length);
     }
 
 
