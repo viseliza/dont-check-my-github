@@ -1,11 +1,9 @@
 class Todos {
     constructor() {
-        this.todosArray = JSON.parse(LocalStorageHelper.todosArray);
-        this.length = LocalStorageHelper.lenght;
+        this.todosArray = LocalStorageHelper.getValueByKey("todos") ?? [];
+        this.length = LocalStorageHelper.getValueByKey("lenght") ?? 0;
         
-        this.todosArray.forEach((todo) => {
-            HTMLHelper.drawTask(todo, true);
-        });
+        this.todosArray.forEach((todo) => HTMLHelper.drawTask(todo, true) );
 
         HTMLHelper.updateTitle();
     }
@@ -27,13 +25,11 @@ class Todos {
         HTMLHelper.drawTask(todo);
 
         this.todosArray = [...this.todosArray, todo];
-        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray); 
-        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.setValueByKey("todos", JSON.stringify(this.todosArray)); 
         
         HTMLHelper.updateTitle();
         this.length++;
-        LocalStorageHelper.lenght = this.length;
-        // localStorage.setItem("lenght", this.length);
+        LocalStorageHelper.setValueByKey("lenght", this.length);
     }
 
 
@@ -49,8 +45,7 @@ class Todos {
         const todos =  document.getElementsByClassName("todos")[0];
         todos.removeChild(todos.getElementsByClassName(`todo todo-${id}`)[0]);
         this.todosArray = this.todosArray.filter(todo => todo.id != id);
-        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray); 
-        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.setValueByKey("todos", JSON.stringify(this.todosArray));
         HTMLHelper.updateTitle();
     }
 
@@ -73,8 +68,7 @@ class Todos {
             return todo;
         });
         todoById = this.todosArray.filter(todo => todo.id == id)[0];
-        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray);
-        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.setValueByKey("todos", JSON.stringify(this.todosArray));
 
         HTMLHelper.updateTitle();
         HTMLHelper.drawTask(todoById);
