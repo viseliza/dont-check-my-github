@@ -1,5 +1,5 @@
 let todosArray = [];
-let todos, helper;
+let todos, helper, localStorageHelper;
 
 document.addEventListener("DOMContentLoaded", () => {
     todos = new Todos();

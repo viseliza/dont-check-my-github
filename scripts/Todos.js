@@ -1,7 +1,7 @@
 class Todos {
     constructor() {
-        this.todosArray = JSON.parse(localStorage.getItem("todos")) ?? [];
-        this.length = localStorage.getItem("lenght") ?? 0;
+        this.todosArray = JSON.parse(LocalStorageHelper.todosArray);
+        this.length = LocalStorageHelper.lenght;
         
         this.todosArray.forEach((todo) => {
             HTMLHelper.drawTask(todo, true);
@@ -27,11 +27,13 @@ class Todos {
         HTMLHelper.drawTask(todo);
 
         this.todosArray = [...this.todosArray, todo];
-        localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray); 
+        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
         
         HTMLHelper.updateTitle();
         this.length++;
-        localStorage.setItem("lenght", this.length);
+        LocalStorageHelper.lenght = this.length;
+        // localStorage.setItem("lenght", this.length);
     }
 
 
@@ -47,7 +49,8 @@ class Todos {
         const todos =  document.getElementsByClassName("todos")[0];
         todos.removeChild(todos.getElementsByClassName(`todo todo-${id}`)[0]);
         this.todosArray = this.todosArray.filter(todo => todo.id != id);
-        localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray); 
+        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
         HTMLHelper.updateTitle();
     }
 
@@ -70,7 +73,8 @@ class Todos {
             return todo;
         });
         todoById = this.todosArray.filter(todo => todo.id == id)[0];
-        localStorage.setItem("todos", JSON.stringify(this.todosArray));
+        LocalStorageHelper.todosArray = JSON.stringify(this.todosArray);
+        // localStorage.setItem("todos", JSON.stringify(this.todosArray));
 
         HTMLHelper.updateTitle();
         HTMLHelper.drawTask(todoById);
