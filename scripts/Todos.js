@@ -63,8 +63,7 @@ class Todos {
         
         const todos =  document.getElementsByClassName("todos")[0];
         const todo = todos.getElementsByClassName(`todo todo-${id}`)[0];
-        todo.getElementsByClassName("text")[0].style.textDecoration = "line-through";
-        todo.getElementsByClassName("fa fa-trash")[0].className = "fa fa-trash disable";
+        todo.remove();
         this.todosArray = this.todosArray.map(todo => {
             if (todo.id == id)
                 todo.status = "done"

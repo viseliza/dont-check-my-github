@@ -9,7 +9,7 @@
 }
 
 body {
-    background: linear-gradient(to bottom right, #150A23, #1E112E);
+    background-color: #0D0714;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -30,13 +30,9 @@ body {
 
 
 /******* ADD *******/
-.container .main-title {
-    margin-top: 50px;
-    font-size: 22px;
-}
 .container .add {
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 70px;
 }
 
 .container .add input {
@@ -45,9 +41,8 @@ body {
     padding: 10px 20px;
     background: transparent;
     font-size: 16px;
-    border: none;
+    border: 1px solid #3E1671;
     border-radius: 10px;
-    box-shadow: rgb(0, 0, 0) 0px 8px 24px;
     margin-right: 20px;
 }
 
@@ -82,7 +77,6 @@ body {
     padding: 20px 20px 40px;
     border-radius: 10px;
     margin: 10px 0;
-    box-shadow: rgb(0, 0, 0) 0px 8px 24px;
     display: flex;
     align-items: center;
     position: relative;

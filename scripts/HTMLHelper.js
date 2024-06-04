@@ -20,22 +20,7 @@ class HTMLHelper {
     static drawTask({id, text, dateStart, status, dateEnd = undefined}, fullRender = false) {
         dateStart = new Date(dateStart);
 
-        if (fullRender && status == "done") {
-            document.getElementsByClassName("todos")[0].innerHTML += `
-                <section class="todo todo-${id} todo-not-done">
-                    <span class="text">${text}</span>
-                    <i onclick="done(${id})" class="fa fa-check"></i>
-                    <i onclick="remove(${id})" class="fa fa-trash disable"></i>
-                    <span class="time">${dateStart.toLocaleDateString()} ${dateStart.toLocaleTimeString()}</span>
-                <section/>
-            `;
-            document.getElementsByClassName("todos-done")[0].innerHTML += `
-                <section class="todo todo-${id} todo-done">
-                    <span class="text">${text}</span>
-                    <span class="time">${dateStart.toLocaleDateString()} ${dateStart.toLocaleTimeString()}</span>
-                <section/>
-            `;
-        } else if (status != "done") {
+        if (status != "done") {
             document.getElementsByClassName("todos")[0].innerHTML += `
                 <section class="todo todo-${id} todo-not-done">
                     <span class="text">${text}</span>
